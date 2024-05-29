@@ -1,0 +1,139 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: Your_password123
+      MYSQL_DATABASE: MainDB
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    command: redis-server
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+      
+  person-service:
+    container_name: person-service
+    build:
+      context: ./backend/PersonService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MainDB;User=root;Password=Your_password123;
+      - RabbitMQ__HostName=rabbitmq
+      - Jwt__Key=your_long_and_secure_jwt_secret_key_that_is_at_least_32_characters_long
+      - Jwt__Issuer=your_jwt_issuer
+      - Jwt__Audience=your_jwt_audience
+    networks:
+      - app-network
+
+  account-service:
+    container_name: account-service
+    build:
+      context: ./backend/AccountService
+      dockerfile: Dockerfile
+    ports:
+      - "5002:8080"
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MainDB;User=root;Password=Your_password123;
+      - RabbitMQ__HostName=rabbitmq
+      - Jwt__Key=your_long_and_secure_jwt_secret_key_that_is_at_least_32_characters_long
+      - Jwt__Issuer=your_jwt_issuer2
+      - Jwt__Audience=your_jwt_audience2
+    networks:
+      - app-network
+
+  transaction-service:
+    container_name: transaction-service
+    build:
+      context: ./backend/TransactionService
+      dockerfile: Dockerfile
+    ports:
+      - "5003:8080"
+    depends_on:
+      - db
+      - rabbitmq
+      - redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MainDB;User=root;Password=Your_password123;
+      - RabbitMQ__HostName=rabbitmq
+      - Jwt__Key=your_long_and_secure_jwt_secret_key_that_is_at_least_32_characters_long
+      - Jwt__Issuer=your_jwt_issuer3
+      - Jwt__Audience=your_jwt_audience3
+    networks:
+      - app-network
+
+  bff-service:
+    container_name: bff-service
+    build:
+      context: ./backend/BFFService
+      dockerfile: Dockerfile
+    ports:
+      - "5004:8080"
+    depends_on:
+      - redis
+      - rabbitmq
+      - db
+      - person-service
+      - account-service
+      - transaction-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - PersonService__Url=http://person-service:8080
+      - AccountService__Url=http://account-service:8080
+      - TransactionService__Url=http://transaction-service:8080
+      - RabbitMQ__HostName=rabbitmq
+      - Redis__ConnectionString=redis:6379
+      - Jwt__Key=your_long_and_secure_jwt_secret_key_that_is_at_least_32_characters_bff
+      - Jwt__Issuer=your_jwt_issuer
+      - Jwt__Audience=your_jwt_audience
+    networks:
+      - app-network
+
+  manager-dashboard:
+    container_name: manager-dashboard
+    build:
+      context: ./frontend/manager-dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "4201:4201"
+    volumes:
+      - ./frontend/manager-dashboard:/app
+    depends_on:
+      - bff-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: gerenciar_contas_bancarias_app-network
+    driver: bridge

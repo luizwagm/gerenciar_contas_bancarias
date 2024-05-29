@@ -1,0 +1,15 @@
+<div *ngIf="userTypeGerente" class="account-management">
+  <p-panel header="Gerenciar contas" styleClass="account-management-panel">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="client">Selecionar cliente</label>
+        <p-dropdown [options]="clients" [(ngModel)]="selectedClient" optionLabel="FirstName" placeholder="Selecione um cliente" (onChange)="changeOptionsUser()"></p-dropdown>
+      </div>
+      <div class="p-field">
+        <p-button label="Criar conta" (onClick)="createAccount()"></p-button>
+        <p-button label="Remover conta" *ngIf="deleteButton" (onClick)="closeAccount()" styleClass="p-button-danger"></p-button>
+        <p-button label="Inativar conta" *ngIf="deactivateButton" (onClick)="deactivateAccount()" styleClass="p-button-warning"></p-button>
+      </div>
+    </div>
+  </p-panel>
+</div>

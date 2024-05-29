@@ -1,0 +1,60 @@
+<div *ngIf="userTypeGerente" class="clients">
+  <p-panel header="Clients" styleClass="clients-panel">
+    <p-button label="Criar cliente" icon="pi pi-plus" (click)="showCreateClientDialog()"></p-button>
+    <p-table [value]="clients">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Número da conta</th>
+          <th>Saldo</th>
+          <th>Status</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-client>
+        <tr *ngIf="client.Accounts.length > 0; else noAccounts">
+          <td rowspan="{{client.Accounts.length}}">{{ client.FirstName }} {{ client.LastName }}</td>
+          <td rowspan="{{client.Accounts.length}}">{{ client.Email }}</td>
+          <td>{{ client.Accounts[0].AccountNumber }}</td>
+          <td>{{ client.Accounts[0].Balance | currency }}</td>
+          <td>{{ client.Accounts[0].IsActive ? "Ativo" : "Inativo" }}</td>
+        </tr>
+        <ng-template #noAccounts>
+          <tr>
+            <td>{{ client.FirstName }} {{ client.LastName }}</td>
+            <td>{{ client.Email }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </ng-template>
+      </ng-template>
+    </p-table>
+  </p-panel>
+  <app-create-client (clientCreated)="onClientCreated()" [(display)]="display"></app-create-client>
+</div>
+
+<div *ngIf="selectedClientOnlyOne && userTypeClient" class="selected-client">
+  <p-panel header="Detalhes do Cliente" styleClass="client-detail-panel">
+    <div class="p-field">
+      <label>Nome: </label>
+      <span>{{ selectedClientOnlyOne.FirstName }} {{ selectedClientOnlyOne.LastName }}</span>
+    </div>
+    <div class="p-field">
+      <label>E-mail: </label>
+      <span>{{ selectedClientOnlyOne.Email }}</span>
+    </div>
+    <div *ngIf="selectedClientOnlyOne.Accounts && selectedClientOnlyOne.Accounts.length > 0" class="p-field">
+      <label>Número da Conta: </label>
+      <span>{{ selectedClientOnlyOne.Accounts[0].AccountNumber }}</span>
+    </div>
+    <div *ngIf="selectedClientOnlyOne.Accounts && selectedClientOnlyOne.Accounts.length > 0" class="p-field">
+      <label>Saldo: </label>
+      <span>{{ selectedClientOnlyOne.Accounts[0].Balance | currency }}</span>
+    </div>
+    <div *ngIf="selectedClientOnlyOne.Accounts && selectedClientOnlyOne.Accounts.length > 0" class="p-field">
+      <label>Status da conta: </label>
+      <span>{{ selectedClientOnlyOne.Accounts[0].IsActive ? "Ativo" : "Inativo" }}</span>
+    </div>
+  </p-panel>
+</div>

@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "teste-iatec",
+    "private_key_id": "3de14f0776bb84a00062b348bd6816f01811981c",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDnK4cvBH6/q8Lf\naGjVgzg5RsGGUOJrHlPGRKlS64PyDyUis097ItZXk02ozgKmEU+3nry7M9Z6sWlL\nEXeP108Pp+DFhSKMTpn0lP1Zr4xgAR9TF+QmU8rCS+RYSlSdci4oaqmYMiycBlCy\n5q9vV4v8rsF6ErA7BSy68bfj2jG6MccmO+05exojKEMjmzRlvjYnCAnb573FRtna\n6Wt6QH6xJxVhv+uTF6FSmHscfOzGQvhPtLv/4qfYdO81PtjeA2Oq9HTlz/sPLWT0\nxOVeyRJGep66PXLfKk9xH95RTI2jetnYvH7aWBKFsyCtxXyqwcv0W5vxo81/pZTv\n0T7QJMonAgMBAAECgf8ao2lwgZQZgjFyjRWHhRd1gjHKyIdO0K/WqRLZ+0m5GwWs\nef0us1T/wnmwegzUFiqZfjFBYTfV65u2isy8RpNVuoKsQCs6/9O9221WaGREq9xw\nNtCTmhRDT3uAsRAPFJk9Dw17/EwnrpKeCvcsXWpEM98Xsg+cvXvqDvCh0QLp8Zpr\ndjcTEabO+fN/v4IVFmLUhupn2h+bkkm9QTnyUleNeSVBQN80mxcNm45pIYPcTPfm\nuHmYHKaux8+vyScCIbsCaQ8HhJ1fcEWrX2aiFs4zU/RsCHuNOynTG6odUkisbP5x\n18sT1VtpBh4w3qGe6fVmTcey/dawQKlRavYKDd0CgYEA+ccASluMGygbgUmLuBvF\ngkmi2m6au3zu+pRztiUxr9HXtFjwOtIqewLg36UPFkmkI8/ubeMsbhEWF15gA12w\nn3aVgdaLCfO1FTb7qHErB2KcB17CeQG7tgu+7DXo9zLQDDwnXoQOvpXLAsZmwZg4\noIbSVshaF8A0tzX9wayxwKUCgYEA7O3bAgKE5gKeB302eWvamou1fhzgSA4+vjS7\nbilAXyZWVmB3z3uyLZwadEG8lXnhZkW6XLyAB34zgVgyq+X+QM9aBPA7A2kb71i7\nnFXW+1w0BgB3dvWcdjNLWE+UMq/uxg7PzpZFjpF7Zc1xoR8pBf7Iy6TC35NCcKNx\nm+I7edsCgYEAukc7ZDkaKDalLKqY1NmBV0VretP5+dGWuLJ2CWV7xNAOuqWJo5SR\nsePXqXMD6W9KRpsQCkveGsgLXao4mMoKqyJZJdfHIcjrR8MVs+2SVZOpIaX+CxjL\n0Vy5KpiaAaGXn0hNZCPAi0pTeOJWSBMqSC3EOIx7BDOIHQrbENGmTzECgYEAmlCN\nTXDQmHLp9JzEJy9tMS1/p0UteyD0ErSLw0NQ7ugsYZPxVQ0OzxAWVtQd/QlmGlOd\n/xqzFK5I45zLXBSvlgy3Z/IDrcP+8tRLVZa/L/Ys2B/jr3JnVsEv+LPUJXNbRFqP\nVNGhOitdQMAfmz6NXJ9GrwR//FiQdIavz0T5UfMCgYEAp9JCqeMD8n7ig+iloUBG\nfUboIrgLd0mPBBHOZplapuEPqnK6uERZhnkiF/BvCjT7M4UzsJ761rW8Ob3i39zT\nsMJVPA11/K12BXFELyYy+WWD3gbKSdm7cs/biqPnRmKQT2AlgJzyYCyfFQPe542X\nP7YojPdfDOUsJVhG94aq9hM=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-ayjyx@teste-iatec.iam.gserviceaccount.com",
+    "client_id": "117223978133539419297",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ayjyx%40teste-iatec.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+}

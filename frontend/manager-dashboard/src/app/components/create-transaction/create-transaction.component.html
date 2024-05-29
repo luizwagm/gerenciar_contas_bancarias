@@ -1,0 +1,26 @@
+<p-dialog header="Create Transaction" [(visible)]="display" [modal]="true" [closable]="false" [style]="{width: '400px'}">
+  <form [formGroup]="createTransactionForm" (ngSubmit)="onCreate()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="AccountId">Selecionar Cliente</label>
+        <p-dropdown id="AccountId" [(ngModel)]="selectedClient" [options]="clients" optionLabel="FirstName" formControlName="AccountId"></p-dropdown>
+      </div>
+      <div class="p-field">
+        <label for="Amount">Valor</label>
+        <input id="Amount" type="text" pInputText formControlName="Amount">
+      </div>
+      <div class="p-field">
+        <label for="TransactionDate">Data da transação</label>
+        <input id="TransactionDate" type="datetime-local" pInputText formControlName="TransactionDate">
+      </div>
+      <div class="p-field">
+        <label for="TransactionType">Tipo de transação</label>
+        <p-dropdown id="TransactionType" [options]="[{label: 'Selecione', value: ''}, {label: 'Débito', value: 'debit'}, {label: 'Crédito', value: 'credit'}]" formControlName="TransactionType"></p-dropdown>
+      </div>
+    </div>
+    <p-footer>
+      <p-button label="Create" type="submit" [disabled]="createTransactionForm.invalid"></p-button>
+      <p-button label="Cancel" type="button" (click)="onHide()"></p-button>
+    </p-footer>
+  </form>
+</p-dialog>

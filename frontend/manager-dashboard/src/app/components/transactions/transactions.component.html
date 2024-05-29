@@ -1,0 +1,45 @@
+<div class="transactions">
+  <p-panel header="Transactions" styleClass="transactions-panel">
+    <div class="p-field">
+      <label for="client">Select Client</label>
+      <p-dropdown 
+        id="client" 
+        [options]="clients" 
+        [(ngModel)]="selectedClient" 
+        optionLabel="FirstName" 
+        placeholder="Select a client"
+        [showClear]="true"
+        required>
+      </p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="startDate">Start Date</label>
+      <p-calendar id="startDate" [(ngModel)]="startDate" dateFormat="yy-mm-dd" [showIcon]="true" required></p-calendar>
+    </div>
+    <div class="p-field">
+      <label for="endDate">End Date</label>
+      <p-calendar id="endDate" [(ngModel)]="endDate" dateFormat="yy-mm-dd" [showIcon]="true" required></p-calendar>
+    </div>
+    <div class="p-field">
+      <p-button label="Filter" (click)="loadTransactions()" [disabled]="!selectedClient || !startDate || !endDate"></p-button>
+    </div>
+    <p-button label="Nova Transaction" icon="pi pi-plus" (click)="showCreateTransactionDialog()"></p-button>
+    <p-table [value]="transactions">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Data</th>
+          <th>Valor</th>
+          <th>Tipo</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-transaction>
+        <tr>
+          <td>{{ transaction.TransactionDate | date }}</td>
+          <td>{{ transaction.Amount | currency }}</td>
+          <td>{{ transaction.TransactionType }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-panel>
+  <app-create-transaction (transactionCreated)="onTransactionCreated()" [(display)]="display"></app-create-transaction>
+</div>
